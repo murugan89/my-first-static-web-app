@@ -1,16 +1,25 @@
-import React, { useState, useEffect } from 'react';
+<!DOCTYPE html>
+<html lang="en">
 
-function App() {
-  const [data, setData] = useState('');
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Vanilla JavaScript App</title>
+</head>
 
-  useEffect(() => {
-    (async function () {
-      const { text } = await( await fetch(`/api/message`)).json();
-      setData(text);
-    })();
-  });
+<body>
+    <main>
+    <h1>Vanilla JavaScript App</h1>
+    <p>Loading content from the API: <b id="name">...</b></p>
+    </main>
 
-  return <div>{data}</div>;
-}
+    <script>
+    (async function() {
+        const { text } = await( await fetch(`/api/message`)).json();
+        document.querySelector('#name').textContent = text;
+    }());
+    </script>
+</body>
 
-export default App;
+</html>
